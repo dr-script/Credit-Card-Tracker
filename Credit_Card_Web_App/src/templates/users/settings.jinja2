@@ -1,0 +1,28 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <div class="form-size" align="center">
+        <h4>Current Settings:</h4>
+            <p>Name: {{ email }}</p>
+            <p>Current Credit Card Start Date: {{ credit_date }}</p>
+        <p>Monthly Budget Amount: {{ budget_amount }}</p>
+        <br>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="credit_date">Credit Card Billing Start Date</label>
+                <input type="date" class="form-control" id="credit_date" name="credit_date" placeholder="date">
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="monthly_budget_amount">Monthly Budget Amount</label>
+                <input type="number" class="form-control" id="monthly_budget_amount" name="monthly_budget_amount" placeholder="Monthly Budget Amount">
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="reset" class="btn btn-default">Rest</button>
+        </form>
+    </div>
+
+
+{% endblock %}

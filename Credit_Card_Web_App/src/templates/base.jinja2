@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Credit Card Budget</title>
+
+    {% include 'html_dependencies.jinja2' %}
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" title="Home">Credit Card Budget</a>
+
+
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a> Today's Date: {{ date_now }}</a></li>
+            </ul>
+
+
+            {% if session['email'] %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if weekly_amount >= 0 %}
+                        <li><a href="{{ url_for('users.user_data') }}">Weekly Amount Left: <font
+                                color="green">${{ weekly_amount }}</font></a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('users.user_data') }}">Weekly Amount Left: <font
+                                color="FF0000">${{ weekly_amount }}</font></a></li>
+                    {% endif %}
+
+                    <li><a href="{{ url_for('users.add_item') }}"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                    </li>
+                    <li><a href="{{ url_for('users.user_settings') }}"><span class="glyphicon glyphicon-cog"></span>
+                        Settings</a></li>
+                    <li><a href="{{ url_for('users.logout_user') }}"><span class="glyphicon glyphicon-log-out"></span>
+                        Log Out</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="{{ url_for('users.register_user') }}"><span class="glyphicon glyphicon-user"></span>
+                        Sign Up</a></li>
+                    <li><a href="{{ url_for('users.login_user') }}"><span class="glyphicon glyphicon-log-in"></span> Log
+                        In</a></li>
+
+                </ul>
+            {% endif %}
+
+        </div>
+    </div>
+
+</nav>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="navbar-bottom">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            {% if session['email'] %}
+                <ul class="nav navbar-nav navbar">
+
+                    <li><a>Home</a></li>
+                    <li><a>About Us</a></li>
+                    <li><a>F.A.Q.</a></li>
+                    <li><a></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if monthly_amount >= 0 %}
+                        <li><a href="{{ url_for('users.user_data') }}">Monthly Amount Left: <font
+                                color="green">${{ monthly_amount }}</font></a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('users.user_data') }}">Monthly Amount Left: <font
+                                color="FF0000">${{ monthly_amount }}</font></a></li>
+                    {% endif %}
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar">
+
+                    <li><a>Home</a></li>
+                    <li><a>About Us</a></li>
+                    <li><a>F.A.Q.</a></li>
+                    <li><a></a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<div class="content container">
+    {% block content %} <!-- This lets other pages write the code to go into here in Jinja -->
+
+    {% endblock %}
+</div>
+
+</body>
+</html>

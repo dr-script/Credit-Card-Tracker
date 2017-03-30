@@ -1,0 +1,22 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    {% if session['email'] %}
+    <div class="jumbotron">
+        <h1>Credit Card Budget Tracker</h1>
+        <p>Welcome {{ email }}!</p>
+        <p>Click the button below to see your current week budget!</p>
+        <br/>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('users.user_data') }}" role="button">Current Week Budget</a></p>
+    </div>
+
+    {% else %}
+    <div class="jumbotron">
+        <h1>Credit Card Budget Tracker</h1>
+        <p>This web app allows you to create and track a credit card budget!</p>
+        <p>You will be able to create a spending budget for your credit card billing cycle.</p>
+        <p>View your spending budget by week and month!</p>
+        <br/>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}" role="button">Sign Up</a></p>
+    {% endif %}
+    </div>
+{% endblock %}
